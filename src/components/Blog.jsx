@@ -22,7 +22,7 @@ export default function Blog() {
           <p className="font-orbitron text-neon-pink text-xs tracking-[0.3em] uppercase mb-3">
             05 / Blog
           </p>
-          <h2 className="section-heading gradient-text mb-4">Tech With Tani — Coming Soon</h2>
+          <h2 className="section-heading gradient-text mb-4">Tech With Saad — Coming Soon</h2>
           <p className="font-space text-gray-400 max-w-lg mx-auto text-base mb-12">
             Decoding AI &amp; ML trends in a human way. No jargon gatekeeping — just clear,
             curiosity-first explorations of the models shaping our world.
@@ -73,7 +73,7 @@ export default function Blog() {
           <FaRss className="text-neon-pink text-2xl mx-auto mb-3" />
           <p className="font-orbitron text-sm text-white mb-2">Get Notified at Launch</p>
           <p className="font-space text-xs text-gray-500 mb-5">
-            Drop your email and be the first to read when Tech With Tani goes live.
+            Drop your email and be the first to read when Tech With Saad goes live.
           </p>
           <div className="flex gap-2">
             <input

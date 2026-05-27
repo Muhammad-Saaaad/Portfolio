@@ -1,16 +1,91 @@
-# React + Vite
+# Muhammad Saad — AI/ML Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website for **Muhammad Saad**, an aspiring AI/ML researcher and engineer. Built with a futuristic dark-neon aesthetic to showcase projects, experience, and skills.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What This Project Does
 
-## React Compiler
+A single-page React application with the following sections:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Hero** — Animated letter-by-letter name reveal, typewriter subtitle, social links
+- **About** — Profile photo, bio, skill tags, and stats (projects, roles, tools)
+- **Projects** — Three AI/ML project cards with hover-reveal highlights and live/GitHub links
+- **Experience** — Alternating left/right timeline of roles and education
+- **Tech Stack** — Animated skill bars grouped by category (Languages, ML/AI, Data & Viz, Tools)
+- **Blog** — "Tech With Saad" coming-soon teaser with email subscribe form
+- **Contact** — Social links + contact form
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- **Vite + React** — fast dev server and build
+- **Tailwind CSS v3** — utility-first styling with custom neon color theme
+- **Framer Motion** — scroll-triggered animations and letter-by-letter effects
+- **tsParticles** — animated neural-network particle background
+- **react-type-animation** — cycling typewriter text
+- **react-scroll** — smooth in-page navigation
+- **react-icons** — icon sets (Font Awesome, Remix Icons)
+
+---
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+Local URL: **http://localhost:5173**
+
+*(Port may shift to 5174, 5175, etc. if already in use — check terminal output)*
+
+---
+
+## Build for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+Preview URL: **http://localhost:4173**
+
+---
+
+## Public / Live URL
+
+> **Live site:** _[Deploy link goes here — e.g. Vercel / Netlify / GitHub Pages]_
+
+To deploy on Vercel (recommended):
+1. Push this repo to GitHub
+2. Import the repo at https://vercel.com/new
+3. Framework preset: **Vite** — no extra config needed
+4. Paste your live URL above once deployed
+
+---
+
+## Profile Photo
+
+Place your photo at:
+
+```
+public/saad.jpg
+```
+
+It will appear automatically in the About and Contact sections. If missing, a fallback emoji is shown.
+
+---
+
+## Personalisation Checklist
+
+- [x] Name: Muhammad Saad
+- [x] Email: rsaad0067@gmail.com
+- [x] Phone: +92-315-3716651
+- [x] GitHub: https://github.com/Muhammad-Saaaad
+- [x] LinkedIn: https://www.linkedin.com/in/muhammadsaadaiexpert/
+- [ ] Profile photo (`public/saad.jpg`)
+- [ ] Real GitHub links on each project card
+- [ ] Live demo links on each project card
+- [ ] Live deployment URL (above)
