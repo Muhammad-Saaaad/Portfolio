@@ -1,8 +1,37 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
 import { Link } from 'react-scroll'
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from 'react-icons/fa'
 import { RiBrainLine, RiRobot2Line, RiDatabase2Line } from 'react-icons/ri'
+
+const socials = [
+  { icon: <FaGithub />, href: 'https://github.com/Muhammad-Saaaad', label: 'GitHub', color: '#8b5cf6' },
+  { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/muhammadsaadaiexpert/', label: 'LinkedIn', color: '#0a66c2' },
+  { icon: <FaEnvelope />, href: 'mailto:rsaad0067@gmail.com', label: 'Email', color: '#f472b6' },
+]
+
+function SocialIcon({ icon, href, label, color }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300"
+      style={{
+        color: hovered ? color : '#9ca3af',
+        borderColor: hovered ? `${color}90` : 'rgba(255,255,255,0.1)',
+        boxShadow: hovered ? `0 0 14px ${color}60` : 'none',
+      }}
+    >
+      {icon}
+    </a>
+  )
+}
 
 const floatingIcons = [
   { icon: <RiBrainLine />, style: 'top-[20%] left-[10%]', delay: 0 },
@@ -44,7 +73,7 @@ export default function Hero() {
         >
           <span className="w-2 h-2 rounded-full bg-neon-blue animate-pulse" />
           <span className="font-space text-sm text-neon-blue tracking-widest uppercase">
-            AI / ML Engineer
+            Aspiring AI Researcher
           </span>
         </motion.div>
 
@@ -59,14 +88,14 @@ export default function Hero() {
         </motion.p>
 
         {/* Main headline — letter-by-letter animation */}
-        <h1 className="font-orbitron font-black text-5xl md:text-7xl lg:text-8xl leading-tight mb-4">
+        <h1 className="font-orbitron font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-4">
           {'MUHAMMAD SAAD'.split('').map((char, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, y: 60, rotateX: -90 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 0.5, delay: 0.4 + i * 0.05, ease: 'easeOut' }}
-              className={`inline-block ${char === ' ' ? 'mr-4' : ''} gradient-text`}
+              className={`inline-block ${char === ' ' ? 'mr-3' : ''} gradient-text`}
               style={{ textShadow: '0 0 30px rgba(0,212,255,0.3)' }}
             >
               {char === ' ' ? ' ' : char}
@@ -133,20 +162,8 @@ export default function Hero() {
           transition={{ delay: 1.6 }}
           className="flex items-center justify-center gap-6 mb-16"
         >
-          {[
-            { icon: <FaGithub />, href: 'https://github.com/Muhammad-Saaaad', label: 'GitHub' },
-            { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/muhammadsaadaiexpert/', label: 'LinkedIn' },
-            { icon: <FaEnvelope />, href: 'mailto:rsaad0067@gmail.com', label: 'Email' },
-          ].map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full border border-neon-blue/20 flex items-center justify-center text-gray-400 hover:text-neon-blue hover:border-neon-blue/60 hover:shadow-neon-blue transition-all duration-300"
-            >
-              {s.icon}
-            </a>
+          {socials.map((s) => (
+            <SocialIcon key={s.label} {...s} />
           ))}
         </motion.div>
 

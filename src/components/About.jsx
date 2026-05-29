@@ -109,20 +109,21 @@ export default function About() {
             className="space-y-6"
           >
             <h3 className="font-orbitron text-2xl font-bold text-white">
-              Graduate AI Engineer &amp;{' '}
-              <span className="gradient-text">Data Enthusiast</span>
+              AI Researcher &amp;{' '}
+              <span className="gradient-text">ML Engineer</span>
             </h3>
 
             <p className="font-space text-gray-400 leading-relaxed">
-              Passionate about building intelligent systems that bridge the gap between
-              complex data and real-world impact. My toolkit includes Python, NLP, and
-              deep learning frameworks — fluent in algorithms and caffeine alike.
+              Started out as a backend and NLP engineer, shipping 10+ projects across
+              real-world products — from REST APIs to language model pipelines. That
+              foundation gave me a deep appreciation for how AI systems actually work
+              end-to-end, not just in theory.
             </p>
 
             <p className="font-space text-gray-400 leading-relaxed">
-              From training language models to crafting interactive data visualisations,
-              I love turning abstract ideas into tangible, working AI products. Currently
-              pursuing my passion at the intersection of machine learning and human experience.
+              Now pivoting fully into AI research: exploring NLP, deep learning, and
+              intelligent systems. I hold a Bachelor's in Computer Science and am
+              passionate about turning research ideas into tangible, working AI products.
             </p>
 
             <div className="flex flex-wrap gap-2 pt-2">
@@ -143,9 +144,9 @@ export default function About() {
 
         {/* Stats row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20">
-          <StatCard value="3+" label="ML Projects Shipped" delay={0} />
-          <StatCard value="2" label="Industry Roles" delay={0.1} />
-          <StatCard value="10+" label="Tech Tools Mastered" delay={0.2} />
+          <StatCard value="10+" label="Projects Shipped" delay={0} />
+          <StatCard value="3+" label="Industry Roles" delay={0.1} />
+          <StatCard value="15+" label="Tech Tools Mastered" delay={0.2} />
           <StatCard value="∞" label="Cups of Coffee" delay={0.3} />
         </div>
       </div>

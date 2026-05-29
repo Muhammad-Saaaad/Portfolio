@@ -4,60 +4,87 @@ import { FaBriefcase, FaUniversity, FaChartBar } from 'react-icons/fa'
 
 const timeline = [
   {
-    role: 'Data Analyst',
-    org: 'University of West London',
-    period: 'Mar 2024 – Jun 2024',
-    type: 'Full-time',
-    icon: <FaUniversity />,
+    role: 'AI Researcher',
+    org: 'Self-directed',
+    period: '2025 – Present',
+    type: 'Research',
+    icon: <FaBriefcase />,
     color: '#00d4ff',
     bullets: [
-      'Analysed student performance datasets using Python and Power BI',
-      'Built automated reporting dashboards reducing manual effort by 40%',
-      'Collaborated with research teams on ML-driven insights',
+      'Exploring NLP, deep learning architectures, and transformer-based models',
+      'Building and publishing AI/ML projects end-to-end — from data to deployment',
+      'Studying research papers and implementing state-of-the-art techniques',
     ],
   },
   {
-    role: 'Data Analyst Intern',
-    org: 'Protrainy',
-    period: 'Sep 2021 – Jan 2022',
+    role: 'ML Engineering Intern',
+    org: 'Cortex Holds',
+    period: '2025',
+    type: 'Internship',
+    icon: <FaChartBar />,
+    color: '#f472b6',
+    bullets: [
+      'Designed and trained ML models for real-world production use cases',
+      'Built NLP pipelines and integrated them into existing product workflows',
+      'Collaborated on model evaluation, fine-tuning, and deployment',
+    ],
+  },
+  {
+    role: 'Backend Engineering Intern',
+    org: 'Cortex Holds',
+    period: '2024',
     type: 'Internship',
     icon: <FaChartBar />,
     color: '#8b5cf6',
     bullets: [
-      'Designed data pipelines and ETL workflows in Python/SQL',
-      'Created interactive Tableau dashboards for client presentations',
-      'Applied NLP techniques to extract insights from unstructured text data',
+      'Developed and maintained REST APIs and backend services in Python',
+      'Worked on system architecture, database design, and server-side logic',
+      'Contributed to 10+ shipped features across multiple product lines',
     ],
   },
   {
-    role: 'AI / ML Engineering Graduate',
-    org: 'University of West London',
-    period: '2021 – 2023',
+    role: "Bachelor's in Computer Science",
+    org: 'EMS Aired University',
+    period: '2022 – 2026',
     type: 'Education',
-    icon: <FaBriefcase />,
-    color: '#f472b6',
+    icon: <FaUniversity />,
+    color: '#06b6d4',
     bullets: [
-      'Specialised in NLP, deep learning, and intelligent systems',
-      'Thesis on transformer-based models for text classification',
-      'Built 3 production-ready ML applications as coursework',
+      'Specialised in software engineering, algorithms, and AI fundamentals',
+      'Built projects spanning backend systems and ML/NLP applications',
+      'Graduated 2026 with a strong focus on intelligent systems and data',
     ],
   },
 ]
+
+const hingeTransition = (index) => ({
+  duration: 0.1,
+  ease: [0.25, 0.1, 0.25, 1],
+  delay: index * 0.055,
+})
 
 function TimelineItem({ item, index, isLast }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const isLeft = index % 2 === 0
 
+  const baseCardStyle = {
+    '--hover-border': `${item.color}90`,
+    '--hover-glow': `${item.color}25`,
+    backfaceVisibility: 'hidden',
+    WebkitBackfaceVisibility: 'hidden',
+  }
+
   return (
     <div ref={ref} className="relative grid md:grid-cols-2 gap-8 mb-12">
-      {/* Content left */}
+      {/* Content left — hinge from right edge (touching the timeline line) */}
       {isLeft ? (
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          initial={{ rotateY: 180 }}
+          animate={inView ? { rotateY: 0 } : {}}
+          transition={hingeTransition(index)}
           className="glass-card p-6 md:text-right"
+          style={{ ...baseCardStyle, transformOrigin: 'right center' }}
         >
           <CardContent item={item} />
         </motion.div>
@@ -70,7 +97,7 @@ function TimelineItem({ item, index, isLast }) {
         <motion.div
           initial={{ scale: 0 }}
           animate={inView ? { scale: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: index * 0.055 + 0.08 }}
           className="w-10 h-10 rounded-full flex items-center justify-center text-sm"
           style={{ background: `${item.color}20`, border: `2px solid ${item.color}`, color: item.color }}
         >
@@ -81,13 +108,14 @@ function TimelineItem({ item, index, isLast }) {
         )}
       </div>
 
-      {/* Content right */}
+      {/* Content right — hinge from left edge (touching the timeline line) */}
       {!isLeft ? (
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
+          initial={{ rotateY: 180 }}
+          animate={inView ? { rotateY: 0 } : {}}
+          transition={hingeTransition(index)}
           className="glass-card p-6 md:col-start-2"
+          style={{ ...baseCardStyle, transformOrigin: 'left center' }}
         >
           <CardContent item={item} />
         </motion.div>
@@ -95,12 +123,13 @@ function TimelineItem({ item, index, isLast }) {
         <div className="hidden md:block" />
       )}
 
-      {/* Mobile card (stacked) */}
+      {/* Mobile card — hinge from left edge */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
+        initial={{ rotateY: 180 }}
+        animate={inView ? { rotateY: 0 } : {}}
+        transition={hingeTransition(index)}
         className="glass-card p-6 md:hidden col-span-2"
+        style={{ ...baseCardStyle, transformOrigin: 'left center' }}
       >
         <CardContent item={item} />
       </motion.div>
@@ -113,8 +142,15 @@ function CardContent({ item }) {
     <>
       <div className="flex items-center gap-2 mb-1 flex-wrap">
         <span
-          className="px-2.5 py-0.5 rounded-full text-xs font-space font-medium"
-          style={{ background: `${item.color}15`, color: item.color, border: `1px solid ${item.color}30` }}
+          className="px-2.5 py-0.5 rounded-full text-xs font-space font-medium tag-pill"
+          style={{
+            background: `${item.color}15`,
+            color: item.color,
+            border: `1px solid ${item.color}30`,
+            '--tag-bg-hover': `${item.color}28`,
+            '--tag-border-hover': `${item.color}90`,
+            '--tag-glow': `${item.color}50`,
+          }}
         >
           {item.type}
         </span>
@@ -159,7 +195,7 @@ export default function Experience() {
           <div className="w-16 h-px bg-gradient-to-r from-neon-pink to-neon-blue mx-auto mt-4" />
         </motion.div>
 
-        <div className="relative">
+        <div className="relative" style={{ perspective: '700px' }}>
           {/* Vertical line (desktop) */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 timeline-line opacity-20" />
 

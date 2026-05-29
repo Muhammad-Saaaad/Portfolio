@@ -121,8 +121,11 @@ function ProjectCard({ project, index }) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-1 rounded-full text-xs font-space font-medium border"
+              className="px-2.5 py-1 rounded-full text-xs font-space font-medium border tag-pill"
               style={{
+                '--tag-bg-hover': `${project.accent}28`,
+                '--tag-border-hover': `${project.accent}90`,
+                '--tag-glow': `${project.accent}50`,
                 borderColor: `${project.accent}30`,
                 color: project.accent,
                 background: `${project.accent}10`,

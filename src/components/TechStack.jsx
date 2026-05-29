@@ -121,6 +121,7 @@ export default function TechStack() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: ci * 0.1 }}
               className="glass-card p-6"
+              style={{ '--hover-border': `${cat.color}90`, '--hover-glow': `${cat.color}25` }}
             >
               {/* Category header */}
               <div className="flex items-center gap-2 mb-5">
@@ -168,8 +169,15 @@ export default function TechStack() {
               <div key={step.label} className="flex items-center gap-2">
                 <div className="flex flex-col items-center gap-1">
                   <div
-                    className="px-3 py-2 rounded-lg text-xs font-space font-medium text-center"
-                    style={{ background: `${step.color}10`, border: `1px solid ${step.color}30`, color: step.color }}
+                    className="px-3 py-2 rounded-lg text-xs font-space font-medium text-center tag-pill"
+                    style={{
+                      background: `${step.color}10`,
+                      border: `1px solid ${step.color}30`,
+                      color: step.color,
+                      '--tag-bg-hover': `${step.color}28`,
+                      '--tag-border-hover': `${step.color}90`,
+                      '--tag-glow': `${step.color}50`,
+                    }}
                   >
                     <div className="text-base mb-0.5">{step.icon}</div>
                     {step.label}

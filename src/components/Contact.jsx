@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaPhone } from 'react-icons/fa'
+import emailjs from '@emailjs/browser'
 
 const socials = [
   { icon: <FaGithub />, label: 'GitHub', href: 'https://github.com/Muhammad-Saaaad', color: '#00d4ff' },
@@ -13,15 +14,36 @@ const socials = [
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Wire up to a backend / EmailJS / Formspree in production
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
-    setForm({ name: '', email: '', message: '' })
+    setLoading(true)
+    setError(false)
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      setSent(true)
+      setForm({ name: '', email: '', message: '' })
+      setTimeout(() => setSent(false), 5000)
+    } catch {
+      setError(true)
+      setTimeout(() => setError(false), 5000)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -64,7 +86,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="font-orbitron text-white font-semibold">Muhammad Saad</p>
-                <p className="font-space text-sm text-neon-blue">AI / ML Engineer</p>
+                <p className="font-space text-sm text-neon-blue">Aspiring AI Researcher</p>
               </div>
             </div>
 
@@ -83,6 +105,10 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="glass-card flex items-center gap-3 p-4 hover:scale-105 transition-all duration-300 group"
+                  style={{
+                    '--hover-border': `${s.color}90`,
+                    '--hover-glow': `${s.color}30`,
+                  }}
                 >
                   <span className="text-lg transition-colors duration-300" style={{ color: s.color }}>
                     {s.icon}
@@ -150,9 +176,10 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-space font-semibold text-navy bg-gradient-to-r from-neon-blue to-neon-violet hover:shadow-neon-blue hover:scale-[1.02] transition-all duration-300"
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-space font-semibold text-navy bg-gradient-to-r from-neon-blue to-neon-violet hover:shadow-neon-blue hover:scale-[1.02] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
               >
-                {sent ? '✓ Message Sent!' : (<><FaPaperPlane /> Send Message</>)}
+                {loading ? 'Sending…' : sent ? '✓ Message Sent!' : error ? '✗ Failed — try again' : <><FaPaperPlane /> Send Message</>}
               </button>
             </form>
           </motion.div>

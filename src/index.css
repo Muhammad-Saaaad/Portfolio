@@ -61,9 +61,20 @@ body {
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 212, 255, 0.4);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+  border-color: var(--hover-border, rgba(0, 212, 255, 0.4));
+  box-shadow: 0 0 30px var(--hover-glow, rgba(0, 212, 255, 0.15));
   transition: all 0.3s ease;
+}
+
+/* Tag pills with per-color hover */
+.tag-pill {
+  transition: all 0.25s ease;
+}
+.tag-pill:hover {
+  background: var(--tag-bg-hover) !important;
+  border-color: var(--tag-border-hover) !important;
+  box-shadow: 0 0 10px var(--tag-glow);
+  transform: scale(1.05);
 }
 
 /* Circuit pattern overlay */

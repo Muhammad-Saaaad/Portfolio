@@ -40,6 +40,7 @@ export default function Blog() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
               className="glass-card p-6 text-left relative overflow-hidden group"
+              style={{ '--hover-border': `${post.color}90`, '--hover-glow': `${post.color}25` }}
             >
               <div
                 className="absolute top-0 left-0 right-0 h-px opacity-50"
@@ -47,8 +48,15 @@ export default function Blog() {
               />
               <span className="text-3xl mb-3 block">{post.emoji}</span>
               <span
-                className="inline-block px-2.5 py-0.5 rounded-full text-xs font-space font-medium mb-3"
-                style={{ background: `${post.color}15`, color: post.color, border: `1px solid ${post.color}30` }}
+                className="inline-block px-2.5 py-0.5 rounded-full text-xs font-space font-medium mb-3 tag-pill"
+                style={{
+                  background: `${post.color}15`,
+                  color: post.color,
+                  border: `1px solid ${post.color}30`,
+                  '--tag-bg-hover': `${post.color}28`,
+                  '--tag-border-hover': `${post.color}90`,
+                  '--tag-glow': `${post.color}50`,
+                }}
               >
                 {post.tag}
               </span>
