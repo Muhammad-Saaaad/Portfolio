@@ -17,29 +17,31 @@ const timeline = [
     ],
   },
   {
-    role: 'ML Engineering Intern',
-    org: 'Cortex Holds',
+    role: 'AI Engineer',
+    org: 'Freelance',
     period: '2025',
-    type: 'Internship',
+    duration: '1–2 months',
+    type: 'Freelance',
     icon: <FaChartBar />,
     color: '#f472b6',
     bullets: [
-      'Designed and trained ML models for real-world production use cases',
-      'Built NLP pipelines and integrated them into existing product workflows',
-      'Collaborated on model evaluation, fine-tuning, and deployment',
+      'Built AI/ML solutions for client projects, from data preparation to model integration',
+      'Developed NLP pipelines and connected model outputs to application workflows',
+      'Evaluated model quality, refined implementations, and supported deployment',
     ],
   },
   {
-    role: 'Backend Engineering Intern',
-    org: 'Cortex Holds',
+    role: 'AI Intern',
+    org: 'Cortex Soul',
     period: '2024',
+    duration: '5 months',
     type: 'Internship',
     icon: <FaChartBar />,
     color: '#8b5cf6',
     bullets: [
-      'Developed and maintained REST APIs and backend services in Python',
-      'Worked on system architecture, database design, and server-side logic',
-      'Contributed to 10+ shipped features across multiple product lines',
+      'Developed Python services and REST APIs to support AI application workflows',
+      'Worked on data handling, database integration, and server-side logic for AI features',
+      'Collaborated with the engineering team to implement and integrate application features',
     ],
   },
   {
@@ -155,6 +157,18 @@ function CardContent({ item }) {
           {item.type}
         </span>
         <span className="font-space text-xs text-gray-500">{item.period}</span>
+        {item.duration && (
+          <span
+            className="px-2.5 py-0.5 rounded-full text-xs font-space font-medium whitespace-nowrap"
+            style={{
+              background: `${item.color}15`,
+              color: item.color,
+              border: `1px solid ${item.color}30`,
+            }}
+          >
+            {item.duration}
+          </span>
+        )}
       </div>
       <h3 className="font-orbitron text-base font-bold text-white mt-2">{item.role}</h3>
       <p className="font-space text-sm font-medium mb-3" style={{ color: item.color }}>
